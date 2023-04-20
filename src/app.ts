@@ -174,12 +174,12 @@ class LordOfTheSith extends Sith{
         super();
     }
 
-    static getInstance(){
-        //se esiste la mandi
+    static getInstance(){ //like an infinite inside loop
+        //se esiste la manda
         if(LordOfTheSith.instance){
             return this.instance;
         }
-        //se non esiste la crei
+        //se non esiste la crea
         this.instance = new LordOfTheSith('Chancellor', 'Darth','Sidius'){
             return this.instance;
         }
@@ -189,5 +189,68 @@ class LordOfTheSith extends Sith{
         console.log(`hi, i'm the ${this.role}`)
     }
 }
+
+//Interfaces
+interface Guerriero{
+    proprieta: string
+    fight(): void;
+}
+
+interface Volante{
+    fly(): void;
+}
+
+
+class Namecciano extends Jedi implements Guerriero, Volante{ //posso estendere una sola classe, ma posso implementare più interfacce
+
+    proprieta:string
+
+    constructor(proprieta:string, name:string, lastname:string){
+        super(name, lastname);
+        this.proprieta=proprieta;
+    }
+
+    abstract fight(): void;
+
+    abstract fly(): void;
+
+}
+
+//generics : componenti con utilizzi generici
+const array5: Array<string> = ['tizio', 'caio', 'sempronio']
+
+function createArray<T>(items: T[]): T[]{
+    return new Array().concat(items)
+}
+
+const arr1 = createArray<number>([1,2,3]);
+const arr2 = createArray<string>(['primo', 'secondo', 'terzo']);
+
+function createAnotherArray<T extends number | string>(items: T[]): T[]{
+    return new Array().concat(items)
+}
+
+class ProvaGenerica<T>{
+    private lista: T[] = []
+
+    addItem(item: T){
+        this.lista.push(item)
+    }
+
+    removeItem(item: T){
+        this.lista.splice(this.lista.indexOf(item,1))
+    }
+}
+
+const listaStringa = new ProvaGenerica<string>()
+listaStringa.addItem('id');
+listaStringa.addItem('username');
+
+const listaNumeri = new ProvaGenerica<number>()
+listaNumeri.addItem(50);
+listaNumeri.addItem(5626);
+
+
+
 
 
