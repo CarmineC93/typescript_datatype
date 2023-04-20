@@ -250,7 +250,24 @@ const listaNumeri = new ProvaGenerica<number>()
 listaNumeri.addItem(50);
 listaNumeri.addItem(5626);
 
+//Decorators
 
+function Printer(messaggio: string){
+    return function(constructor: any){
+        console.log('messaggio personalizzato')
+        console.log(constructor)
+    }
+
+}
+
+@Printer('ciao')
+class Studio{
+    constructor(){
+        console.log('prova')
+    }
+}
+
+//const studio = new Studio();
 
 
 
