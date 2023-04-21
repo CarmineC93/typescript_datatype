@@ -269,5 +269,9 @@ class Studio{
 
 //const studio = new Studio();
 
+//EXPORT IMPORT FILES
+import {addizione} from './function.js'
 
-
+import{StarShip} from './function.js'
+const starShip1 = new StarShip()
+starShip1.guidaIperspazio()
